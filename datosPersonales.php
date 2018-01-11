@@ -15,10 +15,10 @@
             <p>Provincia: <input type="text" name="provincia"></p>
             <p>Teléfono: <input type="text" name="telefono"></p>
             <p>E-mail: <input type="text" name="email"></p>
-            <p><input type='submit' value="Enviar" name='submit'/></p>
+            <p><input type='submit' value="Enviar" name='enviarDatosPersonales'/></p>
         </form>
         <?php
-if (isSet ($_REQUEST['submit'])){
+if (isSet ($_REQUEST['enviarDatosPersonales'])){
     include_once "./persona.php";
     $nombre = $_REQUEST['nombre'];
     $apellidos = $_REQUEST['apellidos'];
@@ -29,7 +29,8 @@ if (isSet ($_REQUEST['submit'])){
     $email = $_REQUEST['email'];
     $persona= new Persona ($nombre,$apellidos,$direccion,$codigoPostal,$provincia,$telefono,$email);
     session_start();
-    $_SESSION['persona'] = $persona;
+    $personaSerializada = serialize($persona);
+    $_SESSION['persona'] = $personaSerializada;
     header('Location:datosCurso.php');
 }
  ?>

@@ -11,17 +11,18 @@
             <p>Centro: <input type="text" name="centro"></p>
             <p>Curso: <input type="text" name="curso"></p>
             <p>Turno: <input type="text" name="turno"></p>
-            <p><input type='submit' value="Enviar" name='submit'/></p>
+            <p><input type='submit' value="Enviar" name='enviarDatosCurso'/></p>
         </form>
         <?php
-if (isSet ($_REQUEST['submit'])){
+if (isSet ($_REQUEST['enviarDatosCurso'])){
     include_once "./matricula.php";
     $centro = $_REQUEST['centro'];
     $curso = $_REQUEST['curso'];
     $turno = $_REQUEST['turno'];
     $matricula= new Matricula ($centro,$curso,$turno);
     session_start();
-    $_SESSION['matricula'] = $matricula;
+    $matriculaSerializada = serialize($matricula);
+    $_SESSION['matricula'] = $matriculaSerializada;
     header('Location:borrador.php');
 }
  ?>

@@ -3,6 +3,15 @@ class Matricula {
     protected $centro;
     protected $curso;
     protected $turno;
+    public function getCentro(){
+        return $this->centro;
+    }
+    public function getCurso(){
+        return $this->curso;
+    }
+    public function getTurno(){
+        return $this->turno;
+    }
     public function __construct($centro,$curso,$turno){
         $this->centro=$centro;
         $this->curso=$curso;
